@@ -5,29 +5,27 @@ class Blog extends Component {
   constructor(props){
     super(props);
     this.state = {
-      test: "Message!"
+      photos: [],
+      sentences: [],
+      posts: {
+        March: [],
+        April: [],
+        May: [],
+        June: [],
+        July: [],
+        August: [],
+        September: [],
+      }
     }
+    // this.fetchPhotos();
+  }
+
+  componentWillMount(){
+    // this.state.photos = ["Hello from Will Mount"];
   }
 
   componentDidMount(){
-    //Fetch photos and add to state
-    this.fetchPhotos();
-    //Create March posts and add to state
-
-    //Create April posts and add to state
-
-    //Create May posts and add to state
-
-    //Create June posts and add to state
-
-    //Create July posts and add to state
-
-    //Create August posts and add to state
-
-    //Create September posts and add to state
-  }
-
-  fetchPhotos(){
+    //Fetch photos and put on state
     const photoURL = "https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase=appalachia";
     let request = new Request(photoURL, {
       headers: new Headers({
@@ -35,22 +33,30 @@ class Blog extends Component {
       })
     })
     fetch(request)
-      .then( (res) => {
-        console.log("Response received: ", res);
-        return res.json();
+    .then( (res) => {
+      return res.json();
+    })
+    .then( (data) => {
+      let photoUrls = data.images.map( x => x.display_sizes[0].uri);
+      this.setState({
+        photos: photoUrls
+      });
+      //Fetch posts for March
+      let URL = "https://www.randomtext.me/api/lorem";
+      return fetch(URL + "/p-20/20-75")
+    })
+    .then( (res) => {
+      return res.json();
+    })
+    .then( (data) => {
+      this.setState({
+        sentences: data.text_out.split("\r").map( x => x.substring(3, x.length - 4))
       })
-      .then( (data) => {
-        console.log("Data received: ", data);
-        let photoUrls = data.images.map( x => x.display_sizes[0].uri);
-        this.setState({
-          photos: photoUrls
-        })
-      })
+    })
   }
 
   render(){
-    console.log("Photos: ", this.state.photos);
-
+    console.log("State at render: ", this.state);
     return (
       <div className='blog'>
         Blog
