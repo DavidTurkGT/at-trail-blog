@@ -1,5 +1,4 @@
 import React from 'react';
-import Post from './Post';
 
 const Month = (props) => {
   const name = props.name.toLowerCase();
@@ -44,9 +43,7 @@ const Month = (props) => {
       <div className="post">
         <div className="date"></div>
         <div className="body">
-          <hr/>
           {postContent}
-          <hr/>
         </div>
       </div>
     )
