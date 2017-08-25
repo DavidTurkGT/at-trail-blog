@@ -141,7 +141,13 @@ class Blog extends Component {
     return (
       <div className='blog'>
         Blog
-        <Month />
+        <Month name="March" posts={this.state.posts.March} />
+        <Month name="April" posts={this.state.posts.April} />
+        <Month name="May" posts={this.state.posts.May} />
+        <Month name="June" posts={this.state.posts.June} />
+        <Month name="July" posts={this.state.posts.July} />
+        <Month name="August" posts={this.state.posts.August} />
+        <Month name="September" posts={this.state.posts.September} />
       </div>
     )
   }

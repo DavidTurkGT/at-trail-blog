@@ -1,10 +1,10 @@
 import React from 'react';
 import Post from './Post';
 
-const Month = () => {
+const Month = (props) => {
   return (
-    <div className="month">
-      Month
+    <div className={props.name}>
+      Month: {props.name}
       <Post />
     </div>
   )
