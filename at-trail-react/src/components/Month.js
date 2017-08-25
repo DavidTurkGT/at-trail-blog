@@ -41,7 +41,9 @@ const Month = (props) => {
 
     return (
       <div className="post">
-        <div className="date"></div>
+        <div className="date">
+          {post.date}
+        </div>
         <div className="body">
           {postContent}
         </div>

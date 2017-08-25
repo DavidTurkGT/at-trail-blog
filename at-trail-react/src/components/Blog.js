@@ -8,7 +8,7 @@ class Blog extends Component {
       photos: [],
       sentences: [],
       posts: {
-        March: [/*{id: #, text: "Lorem ipsum...", photos: [url, url, ...]} */],
+        March: [/*{id: #,date: Date, text: "Lorem ipsum...", photos: [url, url, ...]} */],
         April: [],
         May: [],
         June: [],
@@ -133,6 +133,7 @@ class Blog extends Component {
     }
     let newPost = {
       id: id,
+      date: new Date().toDateString(),
       text: text,
       photos: photoArr,
     }
