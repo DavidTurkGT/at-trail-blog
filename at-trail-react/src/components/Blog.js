@@ -141,7 +141,7 @@ class Blog extends Component {
 
   render(){
     return (
-      <div className='blog'>
+      <div className='blog-container'>
         <Month name="March" posts={this.state.posts.March} />
         <Month name="April" posts={this.state.posts.April} />
         <Month name="May" posts={this.state.posts.May} />
