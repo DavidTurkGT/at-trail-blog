@@ -8,7 +8,7 @@ class Blog extends Component {
       photos: [],
       sentences: [],
       posts: {
-        March: [],
+        March: [/*{text: "Lorem ipsum...", photos: [url, url, ...]} */],
         April: [],
         May: [],
         June: [],
@@ -20,11 +20,8 @@ class Blog extends Component {
     // this.fetchPhotos();
   }
 
-  componentWillMount(){
-    // this.state.photos = ["Hello from Will Mount"];
-  }
-
   componentDidMount(){
+    //TODO: This should be refactored once a DB is connected
     //Fetch photos and put on state
     const photoURL = "https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase=appalachia";
     let request = new Request(photoURL, {
@@ -50,13 +47,41 @@ class Blog extends Component {
     })
     .then( (data) => {
       this.setState({
-        sentences: data.text_out.split("\r").map( x => x.substring(3, x.length - 4))
+        sentences: data.text_out.split("\r").map( x => x.substring(3, x.length - 4) + "  ")
       })
     })
   }
 
   render(){
-    console.log("State at render: ", this.state);
+    //TODO: This will be deleted once a DB is connected
+    let photos = this.state.photos;
+    let sentences = this.state.sentences;
+    if(photos.length && sentences.length){
+        console.log("Creating posts...");
+        console.log("State: ", this.state);
+        //Build a random amount of text
+        let numSentences = Math.floor(Math.random() * 10) + 5 //5-15, incl.
+        console.log("Creating " + numSentences + " sentences");
+        let text = "";
+        for(let i = 0; i < numSentences; i++){
+          let sen = sentences[Math.floor(Math.random() * sentences.length)];
+          text += sen;
+        }
+        //Choose a random number of photos
+        let numPhotos = Math.floor(Math.random() * 5) //0-5, incl.
+        console.log("Choosing " + numPhotos + " photos");
+        let photoArr = [];
+        for(let i = 0; i < numPhotos; i++){
+          photoArr.push(photos[Math.floor(Math.random() * photos.length)]);
+        }
+        let newPost = {
+          text: text,
+          photos: photoArr,
+        }
+        console.log("Created the post: ", newPost);
+
+        console.log("Done!");
+    }
     return (
       <div className='blog'>
         Blog
