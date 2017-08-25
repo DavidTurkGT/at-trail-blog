@@ -7,7 +7,7 @@ const Month = (props) => {
       <div className="heading">
         <h1>{props.name}, 2018</h1>
       </div>
-      <Post posts={props.posts} />
+      <Post posts={props.posts} key={props.posts.id}/>
     </div>
   )
 }

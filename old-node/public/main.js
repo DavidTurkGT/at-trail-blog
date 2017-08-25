@@ -133,8 +133,8 @@ async function createPosts(month, photoArr){
         let p = document.createElement("p");
         for(let j = 0; j < step; j++){
           p.textContent += sentences[i*step + j];
-          postContent.push(p);
         }
+        postContent.push(p);
         let img = document.createElement("img");
         img.src = photos[i];
         if(i == photos.length - 1){

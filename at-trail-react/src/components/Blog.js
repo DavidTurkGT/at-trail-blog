@@ -8,7 +8,7 @@ class Blog extends Component {
       photos: [],
       sentences: [],
       posts: {
-        March: [/*{text: "Lorem ipsum...", photos: [url, url, ...]} */],
+        March: [/*{id: #, text: "Lorem ipsum...", photos: [url, url, ...]} */],
         April: [],
         May: [],
         June: [],
@@ -55,6 +55,7 @@ class Blog extends Component {
 
   makeBlog(){
     //TODO: This will be deleted once a DB is connected
+    let id = 0;
     let photos = this.state.photos;
     let sentences = this.state.sentences;
     if(photos.length && sentences.length){
@@ -70,31 +71,31 @@ class Blog extends Component {
         console.log("Creating posts...");
         console.log("\tCreating posts for March...");
         marchPosts = [];
-        for(let i = 0; i < 16; i++){ marchPosts.push( this.createPost() ) }
+        for(let i = 0; i < 16; i++){ marchPosts.push( this.createPost(id++) ) }
         console.log("\tDone!");
         console.log("\tCreating posts for April...");
         aprilPosts = [];
-        for(let i = 0; i < 27; i++){ aprilPosts.push( this.createPost() ) }
+        for(let i = 0; i < 27; i++){ aprilPosts.push( this.createPost(id++) ) }
         console.log("\tDone!");
         console.log("\tCreating posts for May...");
         mayPosts = [];
-        for(let i = 0; i < 29; i++){ mayPosts.push( this.createPost() ) }
+        for(let i = 0; i < 29; i++){ mayPosts.push( this.createPost(id++) ) }
         console.log("\tDone!");
         console.log("\tCreating posts for June...");
         junePosts = [];
-        for(let i = 0; i < 25; i++){ junePosts.push( this.createPost() ) }
+        for(let i = 0; i < 25; i++){ junePosts.push( this.createPost(id++) ) }
         console.log("\tDone!");
         console.log("\tCreating posts for July...");
         julyPosts = [];
-        for(let i = 0; i < 30; i++){ julyPosts.push( this.createPost() ) }
+        for(let i = 0; i < 30; i++){ julyPosts.push( this.createPost(id++) ) }
         console.log("\tDone!");
         console.log("\tCreating posts for August...");
         augustPosts = [];
-        for(let i = 0; i < 28; i++){ augustPosts.push( this.createPost() ) }
+        for(let i = 0; i < 28; i++){ augustPosts.push( this.createPost(id++) ) }
         console.log("\tDone!");
         console.log("\tCreating posts for September...");
         septemberPosts = [];
-        for(let i = 0; i < 10; i++){ septemberPosts.push( this.createPost() ) }
+        for(let i = 0; i < 10; i++){ septemberPosts.push( this.createPost(id++) ) }
         console.log("\tDone!");
         console.log("\tSetting state...");
         console.log("\tDone!");
@@ -114,7 +115,7 @@ class Blog extends Component {
     }
   }
 
-  createPost(){
+  createPost(id){
     let photos = this.state.photos;
     let sentences = this.state.sentences;
     //Build a random amount of text
@@ -131,6 +132,7 @@ class Blog extends Component {
       photoArr.push(photos[Math.floor(Math.random() * photos.length)]);
     }
     let newPost = {
+      id: id,
       text: text,
       photos: photoArr,
     }
