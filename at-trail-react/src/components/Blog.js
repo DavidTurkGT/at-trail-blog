@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Month from './Month';
 
-const Blog = () => {
-  return (
-    <div className='blog'>
-      Blog
-      <Month />
-    </div>
-  )
+class Blog extends Component {
+  render(){
+    return (
+      <div className='blog'>
+        Blog
+        <Month />
+      </div>
+    )
+  }
 }
 
 export default Blog;

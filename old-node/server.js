@@ -10,7 +10,7 @@ const routes          = require("./routes/index.js");
 const app = express();
 
 // Set Port
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 8080));
 
 // Serve static files to server
 app.use(express.static(path.join(__dirname, "public")));
