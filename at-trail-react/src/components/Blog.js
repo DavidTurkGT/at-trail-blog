@@ -49,39 +49,95 @@ class Blog extends Component {
       this.setState({
         sentences: data.text_out.split("\r").map( x => x.substring(3, x.length - 4) + "  ")
       })
+      this.makeBlog();
     })
   }
 
-  render(){
+  makeBlog(){
     //TODO: This will be deleted once a DB is connected
     let photos = this.state.photos;
     let sentences = this.state.sentences;
     if(photos.length && sentences.length){
-        console.log("Creating posts...");
-        console.log("State: ", this.state);
-        //Build a random amount of text
-        let numSentences = Math.floor(Math.random() * 10) + 5 //5-15, incl.
-        console.log("Creating " + numSentences + " sentences");
-        let text = "";
-        for(let i = 0; i < numSentences; i++){
-          let sen = sentences[Math.floor(Math.random() * sentences.length)];
-          text += sen;
-        }
-        //Choose a random number of photos
-        let numPhotos = Math.floor(Math.random() * 5) //0-5, incl.
-        console.log("Choosing " + numPhotos + " photos");
-        let photoArr = [];
-        for(let i = 0; i < numPhotos; i++){
-          photoArr.push(photos[Math.floor(Math.random() * photos.length)]);
-        }
-        let newPost = {
-          text: text,
-          photos: photoArr,
-        }
-        console.log("Created the post: ", newPost);
+        let newPost;
+        let marchPosts,
+            aprilPosts,
+            mayPosts,
+            junePosts,
+            julyPosts,
+            augustPosts,
+            septemberPosts;
 
+        console.log("Creating posts...");
+        console.log("\tCreating posts for March...");
+        marchPosts = [];
+        for(let i = 0; i < 16; i++){ marchPosts.push( this.createPost() ) }
+        console.log("\tDone!");
+        console.log("\tCreating posts for April...");
+        aprilPosts = [];
+        for(let i = 0; i < 27; i++){ aprilPosts.push( this.createPost() ) }
+        console.log("\tDone!");
+        console.log("\tCreating posts for May...");
+        mayPosts = [];
+        for(let i = 0; i < 29; i++){ mayPosts.push( this.createPost() ) }
+        console.log("\tDone!");
+        console.log("\tCreating posts for June...");
+        junePosts = [];
+        for(let i = 0; i < 25; i++){ junePosts.push( this.createPost() ) }
+        console.log("\tDone!");
+        console.log("\tCreating posts for July...");
+        julyPosts = [];
+        for(let i = 0; i < 30; i++){ julyPosts.push( this.createPost() ) }
+        console.log("\tDone!");
+        console.log("\tCreating posts for August...");
+        augustPosts = [];
+        for(let i = 0; i < 28; i++){ augustPosts.push( this.createPost() ) }
+        console.log("\tDone!");
+        console.log("\tCreating posts for September...");
+        septemberPosts = [];
+        for(let i = 0; i < 10; i++){ septemberPosts.push( this.createPost() ) }
+        console.log("\tDone!");
+        console.log("\tSetting state...");
+        console.log("\tDone!");
+        this.setState({
+          posts:{
+            March: marchPosts,
+            April: aprilPosts,
+            May: mayPosts,
+            June: junePosts,
+            July: julyPosts,
+            August: augustPosts,
+            September: septemberPosts,
+          }
+        })
         console.log("Done!");
+        console.log("State: ", this.state);
     }
+  }
+
+  createPost(){
+    let photos = this.state.photos;
+    let sentences = this.state.sentences;
+    //Build a random amount of text
+    let numSentences = Math.floor(Math.random() * 10) + 5 //5-15, incl.
+    let text = "";
+    for(let i = 0; i < numSentences; i++){
+      let sen = sentences[Math.floor(Math.random() * sentences.length)];
+      text += sen;
+    }
+    //Choose a random number of photos
+    let numPhotos = Math.floor(Math.random() * 5) //0-5, incl.
+    let photoArr = [];
+    for(let i = 0; i < numPhotos; i++){
+      photoArr.push(photos[Math.floor(Math.random() * photos.length)]);
+    }
+    let newPost = {
+      text: text,
+      photos: photoArr,
+    }
+    return newPost;
+  }
+
+  render(){
     return (
       <div className='blog'>
         Blog
